@@ -1,0 +1,26 @@
+class Solution {
+    public int minAdjacentSwaps(int[] nums, int a, int b) {
+        int[] swa= nums;
+        
+        long inversions = 0;
+        long count1 = 0;
+        long count2 = 0;
+        long MOD = 1000000007;
+        
+        for (int num : swa) {
+            if (num < a) {
+                
+                inversions = (inversions + count1 + count2) % MOD;
+            } else if (num >= a && num <= b) {
+            
+                inversions = (inversions + count2) % MOD;
+                count1++;
+            } else {
+                
+                count2++;
+            }
+        }
+        
+        return (int) (inversions % MOD);
+    }
+}
